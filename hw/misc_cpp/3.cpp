@@ -9,7 +9,7 @@ int main() {
 	std::cout << "Введите R,r";
 	std::cin >> R >> r;
 	int a = x * x + y * y;
-	if ((a < R) && (a > r))
+	if ((a < R*R) && (a > r*r))
 	{
 		std::cout << "IN";
 	}
