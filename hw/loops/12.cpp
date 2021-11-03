@@ -8,9 +8,9 @@ int main(){
     while(x){
       i=1;
       int newx=x;
-      while(newx>=16){
-        newx/=16;
-        i*=16;  
+      while(newx>=N){
+        newx/=N;
+        i*=N;  
       }
       x-=i*newx;
       switch(newx){
