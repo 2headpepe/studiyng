@@ -10,5 +10,5 @@ int main(){
     res*=x%10;
     x/=10;
   }
-  std::cout<<sum<<res;
+  std::cout<<sum<<" "<<res;
 }
