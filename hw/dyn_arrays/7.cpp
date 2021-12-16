@@ -7,9 +7,9 @@ void shiftArray(int A[], int n, int k)
 		m[i] = A[i];
 		A[i] = A[i + k];
 	}
-	for (int i = n - k; i < n; ++i) A[i] = m[i - k - 1];
+	for (int i = n - k; i < n; ++i) A[i] = m[i + k - n];
 	std::cout << "Finish: ";
-	for (int i = 0; i < n; ++i) std::cout << A[i]<<" ";
+	for (int i = 0; i < n; ++i) std::cout << A[i]<<", ";
 }
 int main()
 {
@@ -26,4 +26,3 @@ int main()
 	shiftArray(mas, n, k);
 	
 }
-	
