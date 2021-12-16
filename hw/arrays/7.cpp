@@ -19,5 +19,5 @@ int main() {
         }
         ++i;
     }
-    std::cout<<c;
+    std::cout<<c<<" "<<n;
 }
