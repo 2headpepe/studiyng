@@ -7,19 +7,23 @@ int main() {
 	float a, b, c;
 	std::cout << "Input a,b,c\n";
 	std::cin >> a >> b >> c;
-	float d = b * b - 4 * a * c;
-	if (d < 0)
+	if(a==0) std::cout << "Уравнение имеет 1 корень: "<<-c/b;
+	else
 	{
-		std::cout << "Нет корней";
-	}
-	else if(d==0)
-	{
-		std::cout << "Уравнение имеет 1 корень: " << -b / 2 / a;
-	}
-	else 
-	{
-		float x1 = (-b + sqrt(d)) / 2 / a;
-		float x2 = (-b - sqrt(d)) / 2 / a;
-		std::cout << "Уравнение имеет 2 корня: " << x1 << " и " << x2;
+		float d = b * b - 4 * a * c;
+		if (d < 0)
+		{
+			std::cout << "Нет корней";
+		}
+		else if(d==0)
+		{
+			std::cout << "Уравнение имеет 1 корень: " << -b / 2 / a;
+		}
+		else 
+		{
+			float x1 = (-b + sqrt(d)) / 2 / a;
+			float x2 = (-b - sqrt(d)) / 2 / a;
+			std::cout << "Уравнение имеет 2 корня: " << x1 << " и " << x2;
+		}
 	}
 }
