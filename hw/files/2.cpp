@@ -69,7 +69,7 @@ int file2hex(int argc, const char* argv[]) {
     }
     in.close();
     out.close();
-    std::cout << "Files are closed successfully (^_^)\n";
+    std::cout << "Files are closed successfully";
     return 0;
 }
 
