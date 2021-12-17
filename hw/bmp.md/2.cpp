@@ -1,7 +1,7 @@
-void rotating(const char* in, int rotate, std::string out)
+void rotating(const char* in = "bird.bmp", int rotate = 90, std::string out = "Rotated_pic.bmp")
 {
 	RgbImg img = readRgbImg(in);
-	RgbImg new_img = createRgbImg(img.height, img.width, { 0,0,0 });
+	RgbImg new_img = createRgbImg(img.width, img.height, { 0,0,0 });
 	rotate %= 360;
 	while (rotate)
 	{
@@ -10,18 +10,20 @@ void rotating(const char* in, int rotate, std::string out)
 		{
 			for (size_t j = 0; j < img.height; ++j)
 			{
-				new_img.pixels[i][j].Blue = img.pixels[i][j].Blue;
-				new_img.pixels[i][j].Red = img.pixels[i][j].Red;
-				new_img.pixels[i][j].Green = img.pixels[i][j].Green;
+				new_img.pixels[j][i].Blue = img.pixels[i][j].Blue;
+				new_img.pixels[j][i].Red = img.pixels[i][j].Red;
+				new_img.pixels[j][i].Green = img.pixels[i][j].Green;
 			}
 		}
 	}
-	writeRgbImg("SARMAT<3.bmp", new_img);
-}	
+	writeRgbImg("SARMATlove.bmp", new_img);
+	deleteRgbImg(new_img);
+	deleteRgbImg(img);
+}		
 int main(int argc, const char* argv[])
 {		
 	try {
-		rotating(argv[1], (int)argv[2], argv[3]);
+		rotating();
 
 	}
 	catch (std::exception const& e)
