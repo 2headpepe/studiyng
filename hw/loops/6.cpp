@@ -3,15 +3,14 @@
 
 int main() {
     int n = 0;
-    int counter = 0;
+    int c = 0;
     int max = 1;
-    std::cout << "Enter n: ";
     std::cin >> n;
     while (n != 1)
     {
-        (n > max) ? max = n : max += 0;
-        (n%2 == 0) ? n /= 2 : n = (n * 3) + 1;
-        ++counter;
+        max= (n > max) ? n:max;
+        n=(n%2 == 0) ? n/2 :(n * 3) + 1;
+        ++c;
     }
-    std::cout << "max = " << max <<  ", steps = " << counter << "\n";
+    std::cout << "max = " << max <<  ", steps = " << c << "\n";
 }
