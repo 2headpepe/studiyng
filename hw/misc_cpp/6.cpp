@@ -13,7 +13,7 @@ int main() {
 			}
 			else
 			{
-				std::wcout << ".";
+				std::cout << ".";
 			}
 		}
 		std::cout << std::endl;
