@@ -11,6 +11,7 @@ void shiftArray(int A[], int n, int k)
 	for (int i = n - k; i < n; ++i) A[i] = m[i + k - n];
 	std::cout << "Finish: ";
 	for (int i = 0; i < n; ++i) std::cout << A[i]<<", ";
+	delete[] m;
 }
 int main()
 {
@@ -25,5 +26,5 @@ int main()
 	}
 	std::cout << "k = " << k << std::endl;
 	shiftArray(mas, n, k);
-	
+	delete[] mas;
 }
