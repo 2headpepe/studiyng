@@ -1,3 +1,4 @@
+//canv+testbox(пот дикий)
 void prep_for_conv(const char* name = "xxx1.bmp", const char* out = "yyy.bmp")
 {
 	testBoxFilter();
