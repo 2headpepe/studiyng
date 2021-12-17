@@ -8,7 +8,7 @@ double mysqrt(double x, double eps = 1e-6)
 		curr = A;
 		A = (curr + x / curr) / 2;
 		std::cout << A << " " << curr << std::endl;
-	} while (abs((curr - A)) > eps);
+	} while (std::abs((curr - A)) > eps);
 	return A;
 }
 
