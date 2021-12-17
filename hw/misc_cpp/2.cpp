@@ -21,8 +21,8 @@ int main() {
 		}
 		else 
 		{
-			float x1 = (-b + sqrt(d)) / 2 / a;
-			float x2 = (-b - sqrt(d)) / 2 / a;
+			double x1 = (-b + sqrt(d)) / 2 / a;
+			double x2 = (-b - sqrt(d)) / 2 / a;
 			std::cout << "Уравнение имеет 2 корня: " << x1 << " и " << x2;
 		}
 	}
