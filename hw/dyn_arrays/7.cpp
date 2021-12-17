@@ -1,3 +1,4 @@
+//Сдвиг массива
 #include<iostream>
 void shiftArray(int A[], int n, int k)
 {
