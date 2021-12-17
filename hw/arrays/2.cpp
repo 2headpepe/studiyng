@@ -2,11 +2,11 @@
 #include <iostream>
 int main() {
 	int N;
-	float x;
+	double x;
 	std::cin >> N >> x;
 	int* m = new int[N+1];
 	int sum = 0;
-	float curr = 1;
+	double curr = 1;
 	for (int i = 0; i <= N; ++i)
 	{
 		std::cout << i << ": ";
