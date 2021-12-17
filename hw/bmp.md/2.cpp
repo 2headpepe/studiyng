@@ -1,3 +1,4 @@
+//поворотик
 void rotating(const char* in = "anime.bmp", int rotate = 90, const char* out = "Rotated_pic.bmp")//50/50
 {
 	RgbImg img = readRgbImg(in);
