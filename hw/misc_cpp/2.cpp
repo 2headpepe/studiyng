@@ -4,13 +4,13 @@
 #include <cmath>
 int main() {
 	setlocale(LC_ALL, "russian");
-	float a, b, c;
+	double a, b, c;
 	std::cout << "Input a,b,c\n";
 	std::cin >> a >> b >> c;
 	if(a==0) std::cout << "Уравнение имеет 1 корень: "<<-c/b;
 	else
 	{
-		float d = b * b - 4 * a * c;
+		double d = b * b - 4 * a * c;
 		if (d < 0)
 		{
 			std::cout << "Нет корней";
