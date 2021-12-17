@@ -1,3 +1,4 @@
+//в хайповые тона
 void BLM(const char* name = "NOHOMO.bmp", const char* outname = "HOMO.bmp")//working
 {
 	RgbImg img = readRgbImg(name);
