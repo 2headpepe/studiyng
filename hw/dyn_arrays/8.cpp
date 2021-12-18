@@ -25,10 +25,10 @@ int main()
                 }
             }
         else
-            for (j = 0; j < n1; j++)
+            for (j = 0; j < n2; j++)
             {
 
-                for (i = 0; i < n2; i++)
+                for (i = 0; i < n1; i++)
                 {
                     if (i + j == l)
                     {
