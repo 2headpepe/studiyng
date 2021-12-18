@@ -3,12 +3,12 @@
 #include <iostream>
 int main() {
 	setlocale(LC_ALL, "russian");
-	int R;
+	double R;
 	std::cin >> R;
-	int sum = 0;
-	for (int y = -(int)R; y <= (int)R; y +=1)
+	double sum = 0;
+	for (double y = 1.; y <= R; y +=1.)
 	{
-		for (int x = -(int)R; x <= (int)R; x +=1)
+		for (double x = 1.; x <= R; x +=1.)
 		{
 			if ((x * x + y * y) <= R * R)
 			{
@@ -16,6 +16,7 @@ int main() {
 			}
 		}
 	}
-
+    sum*=4;
+    sum+=4*R+1;
 	std::cout << sum;
 }
