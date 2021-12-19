@@ -13,9 +13,9 @@ void Mediana(int n=3,const char* name = "xxx.bmp", const char* out = "yyy.bmp")
 				for (size_t j = 0; j < n; ++j)
 				{
 					size_t i_m = row+i-half,j_m=col-half+j;
-					mas_r[i * 3 + j] = img.pixels[i_m][j_m].Red;
-					mas_g[i * 3 + j] = img.pixels[i_m][j_m].Green;
-					mas_b[i * 3 + j] = img.pixels[i_m][j_m].Blue;
+					mas_r[i * n + j] = img.pixels[i_m][j_m].Red;
+					mas_g[i * n + j] = img.pixels[i_m][j_m].Green;
+					mas_b[i * n + j] = img.pixels[i_m][j_m].Blue;
 				}
 			BubbleSort(mas_r, n * n);
 			BubbleSort(mas_g, n * n);	
