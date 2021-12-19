@@ -12,9 +12,11 @@ void prep_for_conv(const char* name = "xxx1.bmp", const char* out = "yyy.bmp")
 			std::cout << "[" << i << "," << j << "]";
 			std::cin >> ker[i][j];
 		}
-	writeRgbImg(out, convolution(img, t, ker));
+	double** new_img=convolution(img,t,ker);
+	writeRgbImg(out, new_img);
 	
 	deleteRgbImg(img);
+	deleteRgbImg(new_img);
 	for (int i = 0; i < 3; ++i) delete[] ker[i]; 
 	delete[] ker;
 
