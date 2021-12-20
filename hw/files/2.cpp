@@ -1,8 +1,26 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+std::string fill(int count, char sign)
+{
+    std::string str = "";
+    for (int i = 0; i < count; ++i) str+= sign;
+    return str;
+}
+std::string to_hex(int x)
+{
+    std::string str;
+    while (x)
+    {
+        if (x % 16 < 10) str = char(x % 16 + '0')+str;
+        else str = char(x % 16 + 'A' - 10)+str;
+        x /= 16;
+    }
+    while (str.length() < 2) str = "0" + str;
+    return str;
+}
 
-int file2hex(/*int argc, const char* argv[]*/const char* inp="ex.txt", const char* outp="x.txt") {
+int file2hex(/*int argc, const char* argv[]*/const char* inp = "ex.txt", const char* outp = "x.txt") {
     setlocale(LC_ALL, "rus");
     /*if (argc < 3)
     {
@@ -11,7 +29,8 @@ int file2hex(/*int argc, const char* argv[]*/const char* inp="ex.txt", const cha
         return 1;
     }
     */
-    std::ifstream in(/*argv[1]*/"ex.txt");
+    int res = 0;
+    std::ifstream in(/*argv[1]*/"ex.txt", std::ios_base::binary);
     if (!in.is_open())
     {
         std::cout << "Input file open error \n";
@@ -20,7 +39,7 @@ int file2hex(/*int argc, const char* argv[]*/const char* inp="ex.txt", const cha
     else {
         std::cout << "Input file successfully opened\n";
     }
-    std::ofstream out(/*argv[2]*/outp);
+    std::ofstream out(/*argv[2]*/outp, std::ios_base::binary);
     if (!out.is_open())
     {
         std::cout << "Output file open error \n";
@@ -32,12 +51,15 @@ int file2hex(/*int argc, const char* argv[]*/const char* inp="ex.txt", const cha
     unsigned char c;
     std::string str_output = "";
     int counter = 0, global_counter = 0;
-    while ((c = in.get()) != (unsigned char)EOF)
+    while ((c = in.get())!=(unsigned char)EOF)
     {
-        if (counter == 0)
-            std::cout << std::setfill('0') << std::setw(10) << std::hex << 16 * global_counter << ": ";
-
         
+        if (counter == 0)
+        {
+            
+            out << fill(10,'0')<<to_hex(global_counter*16) << ": ";
+        }
+
         if (c >= 32)
         {
             str_output += c;
@@ -46,13 +68,14 @@ int file2hex(/*int argc, const char* argv[]*/const char* inp="ex.txt", const cha
         {
             str_output += '.';
         }
-        std::cout << std::setfill('0') << std::setw(2) << std::hex << (unsigned int)c << " ";
+        out << to_hex(c) << " ";
         counter++;
+        res++;
 
         if (counter == 8)
-            std::cout << " |  ";
+            out << " |  ";
         else if (counter == 17) {
-            std::cout << "  " + str_output << std::endl;
+            out << "  " + str_output << std::endl;
             counter = 0;
             str_output = "";
             global_counter++;
@@ -61,17 +84,18 @@ int file2hex(/*int argc, const char* argv[]*/const char* inp="ex.txt", const cha
     if (counter != 0) {
         while (counter < 17)
         {
-            std::cout << "   ";
+            out << "   ";
             if (counter == 7)
-                std::cout << " |  ";
+                out << " |  ";
 
             counter++;
+            res++;
         }
-        std::cout << "  " + str_output << std::endl;
+        out << "  " + str_output << std::endl;
     }
     in.close();
     out.close();
-    std::cout << "Files are closed successfully (^_^)\n";
+    out << "Files are closed successfully (^_^)\n" << counter << " " << res;
     return 0;
 }
 
