@@ -1,5 +1,6 @@
 #include <iostream>
 #include "database.h"
+
 int menu()
 {
 	for (int i = 0; i < 40; ++i)
@@ -10,7 +11,7 @@ int menu()
 	std::cout << "3. Save database" << std::endl;
 	std::cout << "4. Export database" << std::endl;
 	std::cout << "5. Add flat" << std::endl;
-	std::cout << "6. Delete flat" << std::endl;
+	std::cout << "6. Delete flat(nw)" << std::endl;
 	std::cout << "0. Exit" << std::endl;
 
 	int tmp;
@@ -19,20 +20,19 @@ int menu()
 
 }
 int main()
-{
+{	
 	DataBase db = { 0, nullptr };
-
+	
 	int action;
 	do {
 		action = menu();
 		switch (action) {
-		case 1: break;
+		case 1: openDB(db,"out.db"); break;
 		case 2: printDB(db); break;
-		case 3: //saveDB(db);
-			break;
-		case 4: break;
+		case 3: saveDB(db,"out.db"); break;
+		case 4: exportDB(db, "out.txt"); break;
 		case 5: addFlat(db); break;
-		case 6: break;
+		case 6: /*delDB(db);*/ break;
 		}
 	} while (action != 0);
 
