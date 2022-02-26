@@ -1,8 +1,11 @@
 #include "database.h"
 #include<fstream>
+#include<iomanip>
 std::ostream& operator<<(std::ostream& out, const Flat& num)
 {
-	out << num.id <<'\t'  << num.price << '\t' << num.countRooms << '\t'<<'\t' << num.floor << '\t' << num.area << '\t';
+	out << num.id << '\t' << std::setfill('0') << std::setw(2) << num.day << '.' << std::setfill('0')<< std::setw(2)
+		<< num.month << '.' << std::setfill('0')<< std::setw(2) << num.year << '\t' << num.price << '\t' << num.countRooms
+															<< '\t' << '\t' << num.floor << '\t' << num.area << '\t';
 	int i = 0;
 	while(num.address[i]!='\a')
 	{
@@ -15,6 +18,9 @@ std::ostream& operator<<(std::ostream& out, const Flat& num)
 std::istream& operator>>(std::istream& in, Flat& num)
 {
 	for (int i = 0; i < 64; ++i) num.address[i] = '\a';
+	std::cout << "Date. Year: "; in >> num.year;
+	std::cout << "Date. No. of month: "; in >> num.month;
+	std::cout << "Date. Day: "; in >> num.day;
 	std::cout << "Price: ";
 	in >> num.price;
 	in.ignore();
@@ -46,13 +52,19 @@ int addFlat(DataBase& db)
 
 	db.data[db.count].id = db.count;
 
+	
+	/*tm Tm;
+	time_t t = std::time(nullptr);
+	errno_t err = localtime_s(&Tm, &t);*/
+	
 	++db.count;
 
 	return db.count;
 }
 void printDB(const DataBase& db)
 {
-	std::cout << "ID" << '\t' << "Price" << '\t' << "CountRooms" << '\t' << "Floor" << '\t' << "Area" << '\t' << "Address" << std::endl;
+	std::cout << "ID" << '\t' << "Date"<< '\t' << '\t' << "Price" << '\t' << "CountRooms" << '\t' << "Floor" << '\t' << "Area" << '\t' << "Address"
+																										<< std::endl;
 	for (int i = 0; i < db.count; ++i)
 	{
 		std::cout << db.data[i] << std::endl;
@@ -67,7 +79,8 @@ void exportDB(const DataBase& db, const char* filename)
 		return;
 	}
 
-	outFile << "ID" << '\t' << "Price" << '\t' << "CountRooms" << '\t' << "Floor" << '\t' << "Area"<<'\t' << "Address" << std::endl;
+	outFile << "ID" << '\t' << "Date" << '\t' << '\t' << "Price" << '\t' << "CountRooms" << '\t' << "Floor" << '\t' << "Area" << '\t' << "Address"
+		<< std::endl;
 	for (int i = 0; i < db.count; ++i)
 	{
 		outFile << db.data[i];
