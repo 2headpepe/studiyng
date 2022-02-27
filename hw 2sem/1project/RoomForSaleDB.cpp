@@ -1,5 +1,5 @@
-#include <iostream>
 #include "database.h"
+
 
 int menu()
 {
@@ -11,7 +11,9 @@ int menu()
 	std::cout << "3. Save database" << std::endl;
 	std::cout << "4. Export database" << std::endl;
 	std::cout << "5. Add flat" << std::endl;
-	std::cout << "6. Delete flat(nw)" << std::endl;
+	std::cout << "6. Delete flat" << std::endl;
+	std::cout << "7. Sort by price." << std::endl;
+
 	std::cout << "0. Exit" << std::endl;
 
 	int tmp;
@@ -32,7 +34,8 @@ int main()
 		case 3: saveDB(db,"out.db"); break;
 		case 4: exportDB(db, "out.txt"); break;
 		case 5: addFlat(db); break;
-		case 6: /*delDB(db);*/ break;
+		case 6: delDB(db); break;
+		case 7: sortDB(db); break;
 		}
 	} while (action != 0);
 
