@@ -1,12 +1,5 @@
 #pragma once
-#include<iostream>
-
-struct Flat
-{
-public:
-    int id, countRooms, floor, area, price, day,month,year;
-    char address[64];
-};
+#include "flat.h"
 
 struct DataBase
 {
@@ -14,12 +7,29 @@ struct DataBase
     Flat* data;
 };
 
-std::ostream& operator<<(std::ostream& out, const Flat& num);
-std::istream& operator>>(std::istream& in, const Flat& num);
-
 int addFlat(DataBase& db);
 void printDB(const DataBase& db);
-void exportDB(const DataBase& db,const char* filename);
+void exportDB(const DataBase& db,const char* filename); 
 void saveDB(const DataBase& db, const char* filename);
 void openDB(DataBase& db, const char* filename);
-//void delDB(DataBase& db);
+void delDB(DataBase& db);
+void sortDB(const DataBase& db);
+
+
+
+template <typename T>
+void mySort(T* M, int n, bool (*comparator)(const T&, const T&),int count)
+{
+    for (int i = 0; i < n-1; ++i)
+    {
+        if (M[i].countRooms == count)
+        {
+            int tmp = i;
+            for (int j = tmp + 1; j < n; ++j)
+            {
+                if (comparator(M[j], M[i])&&(M[j].countRooms==count)) tmp = j;
+            }
+            if (i < tmp) std::swap(M[tmp], M[i]);
+        }
+    }
+}
