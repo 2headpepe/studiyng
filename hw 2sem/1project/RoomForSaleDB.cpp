@@ -13,6 +13,8 @@ int menu()
 	std::cout << "5. Add flat" << std::endl;
 	std::cout << "6. Delete flat" << std::endl;
 	std::cout << "7. Sort by price." << std::endl;
+	std::cout << "8. Find ID." << std::endl;
+	std::cout << "9. Sort by price(with room)." << std::endl;
 
 	std::cout << "0. Exit" << std::endl;
 
@@ -36,6 +38,8 @@ int main()
 		case 5: addFlat(db); break;
 		case 6: delDB(db); break;
 		case 7: sortDB(db); break;
+		case 8: findByID(db); break;
+		case 9: sortDBwroom(db); break;
 		}
 	} while (action != 0);
 
