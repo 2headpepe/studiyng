@@ -98,17 +98,63 @@ void delDB(DataBase& db)
 		db.data[i - 1] = db.data[i];
 	--db.count;
 }
-void sortDB(DataBase& db)
+void sortDBwroom(DataBase& db)
 {
 	std::cout << "Count rooms: ";
-	int count;
-	std::cin >> count;
-	
-	mySort(db.data,db.count, sortByCountRooms,count);
-	printDB(db);
+	int countRoom,count=0;
+	std::cin >> countRoom;
+
+
+	for (int i = 0; i < db.count; ++i)
+	{
+		if (db.data[i].countRooms == countRoom)
+		{
+			++count;
+		}
+	}
+	Flat* tmp = new Flat[count];
+	int j = 0;
+	for (int i = 0; i < db.count; ++i)
+	{
+		if (db.data[i].countRooms == countRoom)
+		{
+			tmp[j]=db.data[i];
+			++j;
+		}
+	}
+	DataBase sortDB = {count,tmp};
+
+	mySort(sortDB.data, sortDB.count, sortByPrice);
+	printDB(sortDB);
+	delete[] tmp;
 }
+void sortDB(DataBase& db)
+{
+	
+	mySort(db.data, db.count, sortByPrice);
+}
+int find(const DataBase& db,int id)
+{
+	for (int i = 0; i < db.count; ++i)
+		if (db.data[i].id == id) return i;
+	return -1;
+}
+void findByID(const DataBase& db)
+{
+	int tmpId;
+	std::cout << "ID: ";
+	std::cin >> tmpId;
+
+	int currentFlat = find(db, tmpId);
+
+	std::cout << "ID" << '\t' << "Date" << '\t' << '\t' << "Price" << '\t' << "CountRooms" << '\t' << "Floor" 
+		<< '\t' << "Area" << '\t' << "Address"<<std::endl;
 
 
-
-
-
+	for (int i = 0; i < db.count; ++i)
+	{
+		if ((db.data[i].floor == db.data[currentFlat].floor) && (db.data[i].countRooms == db.data[currentFlat].countRooms) &&
+			(db.data[i].area <= 1.2 * db.data[currentFlat].area) && (db.data[i].area >= 0.8 * db.data[currentFlat].area))
+			std::cout << db.data[i] << std::endl;
+	}
+}
