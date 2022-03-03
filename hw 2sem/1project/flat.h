@@ -9,6 +9,6 @@ public:
 };
 
 std::ostream& operator<<(std::ostream& out, const Flat& num);
-std::istream& operator>>(std::istream& in, const Flat& num);
+std::istream& operator>>(std::istream& in,  Flat& num);
 
-bool sortByCountRooms(const Flat& first, const Flat& second);
+bool sortByPrice(const Flat& first, const Flat& second);
