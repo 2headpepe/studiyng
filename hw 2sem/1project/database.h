@@ -13,23 +13,23 @@ void exportDB(const DataBase& db,const char* filename);
 void saveDB(const DataBase& db, const char* filename);
 void openDB(DataBase& db, const char* filename);
 void delDB(DataBase& db);
-void sortDB(const DataBase& db);
-
+void sortDBwroom(DataBase& db);
+void sortDB(DataBase& db);
+void findByID(const DataBase& db);
+int find(const DataBase& db);
 
 
 template <typename T>
-void mySort(T* M, int n, bool (*comparator)(const T&, const T&),int count)
+void mySort(T* M, int n, bool (*comparator)(const T&, const T&))
 {
     for (int i = 0; i < n-1; ++i)
     {
-        if (M[i].countRooms == count)
+        int tmp = i;
+        for (int j = i + 1; j < n; ++j)
         {
-            int tmp = i;
-            for (int j = tmp + 1; j < n; ++j)
-            {
-                if (comparator(M[j], M[i])&&(M[j].countRooms==count)) tmp = j;
-            }
-            if (i < tmp) std::swap(M[tmp], M[i]);
+            if (comparator(M[j], M[tmp])) tmp = j;
         }
+        if (i < tmp) std::swap(M[tmp], M[i]);
+        
     }
 }
