@@ -39,7 +39,7 @@ std::istream& operator>>(std::istream& in, Flat& num)
 	//num.id = db.count;
 	return in;
 }
-bool sortByCountRooms(const Flat& first, const Flat& second)
+bool sortByPrice(const Flat& first, const Flat& second)
 {
 	return first.price > second.price;
 }
